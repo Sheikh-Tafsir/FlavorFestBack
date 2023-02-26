@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SignupController;
 use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,17 @@ Route::get('/api/csrf-token', function () {
     ]);*/
     return "1234";
 });
-Route::get('/login',[LoginController::class,'index']);
+Route::get('/api/login',[LoginController::class,'index']);
 Route::get('/api/login',[LoginController::class,'login'])->middleware('web','throttle:login', 'verified', 'csrf');
 
+Route::get('/api/signup',[SignupController::class,'index']);
+Route::get('/api/signup',[SignupController::class,'signup'])->middleware('web','throttle:login', 'verified', 'csrf');
+
 // Routes for requests coming from a different port
+
 Route::group(['middleware' => ['web', 'cors'], 'namespace' => 'Api'], function () {
     Route::post('/api/login', [LoginController::class, 'login']);
+    Route::post('/api/signup', [SignupController::class, 'signup']);
 });
+
 Route::post('formSubmit','PostController@formSubmit');
