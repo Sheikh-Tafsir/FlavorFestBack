@@ -9,14 +9,18 @@ use App\MOdels\User;
 class SignupController extends Controller
 {
    //
-   public function index()
-   {
-       $csrf_token = csrf_token();
-       return $csrf_token;
-   }
+    public function index()
+    {
+    //    $csrf_token = csrf_token();
+    //    return $csrf_token;
+       return "hello";
+    }
 
-   public function signup(Request $request)
-   {       
+    public function signup(Request $request)
+    {   
+        // echo "<pre>";
+        // print_r($request->all());
+
         $user = new User;
         try {
             $user->name = $request->input('name');
@@ -28,5 +32,5 @@ class SignupController extends Controller
         catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Error creating user: ' . $e->getMessage()]);
         }
-   }
+    }
 }

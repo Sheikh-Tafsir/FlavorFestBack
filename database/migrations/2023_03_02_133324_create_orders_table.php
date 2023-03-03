@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('name')->primary();
-            $table->string('email')->unique();
-            $table->string('password');
+        Schema::create('orders', function (Blueprint $table) {
+            $table->bigIncrements('order_id'); // Set order_id as primary key
+            $table->string('name');
+            $table->string('order');
+            $table->string('total');
             $table->timestamps();
         });
     }
@@ -24,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropPrimary('name');
-        });
+        Schema::dropIfExists('orders');
     }
 };
