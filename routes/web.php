@@ -40,11 +40,12 @@ Route::post('/api/signup',[SignupController::class,'signup']);//->middleware('we
 Route::post('/api/orders',[OrdersController::class,'orders']);//->middleware('web','throttle:login', 'verified', 'csrf');
 // Routes for requests coming from a different port
 
+Route::get('/api/post',[PostController::class,'orderpost']);
 // Route::group(['middleware' => ['web', 'cors', 'throttle:login', 'verified'], 'namespace' => 'Api'], function () {
 //     Route::post('/api/login', [LoginController::class, 'login']);
 //     Route::post('/api/signup', [SignupController::class, 'signup']);
 //     //Route::post('/api/orders', [OrdersController::class, 'orders']);
 // });
 
-Route::get('/formsubmit',[PostController::class, 'index']);
-Route::post('/formsubmit',[PostController::class, 'formsubmit']);
+// Route::get('/formsubmit',[PostController::class, 'index']);
+// Route::post('/formsubmit',[PostController::class, 'formsubmit']);

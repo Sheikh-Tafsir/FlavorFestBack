@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MOdels\Order;
 
 class PostController extends Controller
 {
@@ -11,8 +12,11 @@ class PostController extends Controller
     {
        return "hello";
     }
-    public function formsubmit(Request $request)
+    public function orderpost()
     {
-    	return response()->json([$request->all()]);
+        $users = Order::all();
+        //$users = User::where('name',"Tafsir Rahman")->get();
+
+    	return response()->json($users);
     }
 }
